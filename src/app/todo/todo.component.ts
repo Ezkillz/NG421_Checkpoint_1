@@ -2,7 +2,8 @@ import { Component, OnInit,Input } from '@angular/core';
 import {TodoService} from '../services/todo.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
-import { TodoEditComponent } from '../todo-edit/todo-edit.component';
+import { NewEditTodoComponent } from '../new-edit-todo/new-edit-todo.component';
+import { ResetService } from '../services/reset.service'
 
 @Component({
   selector: 'app-todo',
@@ -12,12 +13,13 @@ import { TodoEditComponent } from '../todo-edit/todo-edit.component';
 export class TodoComponent implements OnInit {
   @Input() todo;
   isEditing : boolean = false;
-  statuses;
+  statuses = ["todo", "doing", "done"];
   todoTitle = ''
-  constructor(private todoService : TodoService, private modalService : NgbModal) { }
+  constructor(private todoService : TodoService, private modalService : NgbModal, private rest:ResetService)
+   { }
 
   ngOnInit() {
-    this.statuses = this.todoService.getStatuses();
+   
   }
   async deleteTodo(todo){
     let result: string; //added a string 
@@ -36,7 +38,7 @@ export class TodoComponent implements OnInit {
 
   async editTodo(todo) {
     let result;
-    const modal = this.modalService.open(TodoEditComponent);
+    const modal = this.modalService.open(NewEditTodoComponent);
     modal.componentInstance.modalInstance = modal;
     try {
       result = await modal.result;
@@ -44,6 +46,15 @@ export class TodoComponent implements OnInit {
     }
     catch (ex){ }
   }
+
+   changeThisStatus(statuses: string) {
+     console.log("called")
+    
+    this.todoService.changeStatus(this.todo, statuses);
+    this.rest.resetView();
+  }
+
+
 
 
 }

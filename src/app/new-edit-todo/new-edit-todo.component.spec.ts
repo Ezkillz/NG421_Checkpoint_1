@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoEditComponent } from './todo-edit.component';
+import { NewEditTodoComponent } from './new-edit-todo.component';
 
-describe('TodoEditComponent', () => {
-  let component: TodoEditComponent;
-  let fixture: ComponentFixture<TodoEditComponent>;
+describe('NewEditTodoComponent', () => {
+  let component: NewEditTodoComponent;
+  let fixture: ComponentFixture<NewEditTodoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoEditComponent ]
+      declarations: [ NewEditTodoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoEditComponent);
+    fixture = TestBed.createComponent(NewEditTodoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

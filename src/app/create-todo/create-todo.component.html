@@ -1,2 +1,4 @@
-<input type="text" class="todo-input" placeholder="Add next todo here" [(ngModel)]="todoTitle" (keyup.enter)=addTodo(todo)>
-<button>Enter</button>
+<input type="text" class="todo-input" placeholder="Add todoTitle here" name="newTodo" [(ngModel)]="todoTitle" (keyup.enter)="addTodo(todo)">
+<br>
+<input type="text" class="todo-input" placeholder="Add todoDescription here" name="newTodo" [(ngModel)]="todoDescription" (keyup.enter)="addTodo(todo)">
+<button type="button" class="todo-input" for="newTodo" (click)="addTodo(todo)">Enter</button>

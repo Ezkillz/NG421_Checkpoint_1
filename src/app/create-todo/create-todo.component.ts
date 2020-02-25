@@ -9,7 +9,8 @@ import { ResetService } from '../services/reset.service';
   styleUrls: ['./create-todo.component.css']
 })
 export class CreateTodoComponent implements OnInit {
-  todoTitle = ''
+  todoTitle = '';
+  todoDescription = '';
   todo:ITodo = {id:1, title:'string', status:'todo', description:'script', createdAt: new Date( )}
   constructor(private todoService : TodoService, private reset:ResetService) { }
 
@@ -20,11 +21,12 @@ export class CreateTodoComponent implements OnInit {
       title: this.todoTitle,
       status: 'Todo',
       createdAt: new Date(),
-      description: ''
+      description: this.todoDescription,
     });
     
     // resets our todoTitle variable to an empty string
     this.todoTitle = '';
+    this.todoDescription = '';
     this.reset.resetView();
   }
 

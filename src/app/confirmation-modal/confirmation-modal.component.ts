@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
+import { ResetService} from '../services/reset.service'
+
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -6,13 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirmation-modal.component.css']
 })
 export class ConfirmationModalComponent implements OnInit {
-  modalInstance
-  constructor() { }
+  modalInstance: NgbModalRef;
+  constructor(private reset:ResetService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {} 
+
   yes(){
     this.modalInstance.close("yes");
+    this.reset.resetView();
  }
 
 }

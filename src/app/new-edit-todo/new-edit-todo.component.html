@@ -1,0 +1,24 @@
+<!-- <input type="text" class="todo-input" placeholder="Add next todo here" [(ngModel)]="todoTitle" (keyup.enter)=editTodo(todo)>
+<button type="button" class="todo-input" placeholder="Add next todo here" [(ngModel)]="todoTitle" (click)=editTdo(todo)>Enter</button>
+<button type="button">Cancel</button> -->
+
+<ng-template #content let-modal>
+    <div class="modal-header ">
+        <h4 class="modal-title" id="modal-title"> </h4>
+        <button type="button" class="close" aria-label="close" (click)="modal.dismiss()">X</button>
+    </div>
+    <div class="modal-body">
+        <label for="title"> Title: </label>
+        <input name="title" type="text" placeholder="{{this.updateTodo.title}}" [(ngModel)]="todoTitle">
+        <br>
+        <label for="description"> Descript: </label>
+        <input name=" description" type="text" placeholder="{{this.updateTodo.description}}" [(ngModel)]="todoDescript">
+        <br>
+
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn bnt-outline-dark" (click)="editTodo()">Update</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="modal.open(content)">Edit</button>

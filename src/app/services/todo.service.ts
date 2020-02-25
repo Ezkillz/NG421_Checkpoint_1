@@ -3,6 +3,7 @@ import {ITodo} from '../interfaces/Itodo';
 import { ReturnStatement } from '@angular/compiler';
 import { throwError } from 'rxjs';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { debug } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,8 @@ export class TodoService {
       return this.todoList
     }
     else{
+      console.log(this.todoList)
+     
       return this.todoList.filter(todo => todo.status.toLowerCase() === status.toLowerCase());
     }
 }
@@ -38,6 +41,22 @@ export class TodoService {
   }
   getStatuses() { 
     return this.status;
+  }
+  updateTodo( newTodoItem: ITodo ){
+    let oldTodoIndex = this.todoList.findIndex(todoItem => todoItem.id === newTodoItem.id);
+    this.todoList[ oldTodoIndex] = {
+      id: newTodoItem.id,
+      status: newTodoItem.status,
+      description: newTodoItem.description,
+      createdAt: newTodoItem.createdAt,
+      title: newTodoItem.title
+    }
+  }
+
+  changeStatus(todoItem: ITodo, status: string){
+ 
+    let todoItemIndex = this.todoList.findIndex(todo => todo.id === todoItem.id);
+    this.todoList[ todoItemIndex].status= status;
   }
 
 }

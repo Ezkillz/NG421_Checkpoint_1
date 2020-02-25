@@ -1,5 +1,9 @@
+<div *ngIf="this.resetService.reset">
 <ul class="list-group">
+    
     <li class="list-group-item" *ngFor="let todo of todoList">
        <app-todo [todo]="todo"></app-todo>
     </li>
+
 </ul>
+</div>
